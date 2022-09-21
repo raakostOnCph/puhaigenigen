@@ -23,4 +23,11 @@ public class Facade
     {
         return BogMapper.hentBøger();
     }
+
+    public static String sletBog(int bog_id) throws SQLException
+    {
+        return BogMapper.sletBog(bog_id);
+
+
+    }
 }

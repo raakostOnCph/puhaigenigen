@@ -10,7 +10,7 @@ public class BogMapper
 {
 
 
-    public static Bog opretBog(Bog bog) throws SQLException
+    protected static Bog opretBog(Bog bog) throws SQLException
     {
         String sql = "INSERT INTO BogTabel (Forfatter , Title ) VALUES (?, ?)";
 
@@ -43,7 +43,7 @@ public class BogMapper
 
     }
 
-    public static List<Bog> hentBøger() throws SQLException
+    protected static List<Bog> hentBøger() throws SQLException
     {
         List<Bog> bogList = new LinkedList<>();
 
@@ -72,4 +72,30 @@ public class BogMapper
     }
 
 
+    protected static String sletBog(int bog_id) throws SQLException
+    {
+        String sql = "delete from BogTabel where idBogTabel = ?";
+
+        try (Connection con = ConnectionConfiguration.getConnection(); PreparedStatement ps = con.prepareStatement(sql);
+
+        )
+
+        {
+
+            ps.setInt(1,bog_id);
+             int res = ps.executeUpdate();
+
+             if (res > 0) {
+
+                 return "en bog med bog id " + bog_id + " er nu slettet";
+             }
+             return "kunne ikke finde boget med id " + bog_id;
+
+
+        }
+
+
+
+
+    }
 }
