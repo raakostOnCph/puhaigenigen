@@ -49,4 +49,10 @@ public class Bog
     {
         this.forfatter = forfatter;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Bog{" + "bogId=" + bogId + ", title='" + title + '\'' + ", forfatter='" + forfatter + '\'' + '}';
+    }
 }
